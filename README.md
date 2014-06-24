@@ -39,8 +39,7 @@ Simplest example for using evercookies in java projects
         <servlet-name>JecJsServlet</servlet-name>
         <url-pattern>/jevercookie.js</url-pattern>
     </servlet-mapping>
-```
-3. Use evercookies in your pages
+```3. Use evercookies at your pages
 ```
  	<script type="text/javascript" src="jevercookie.js"></script>
 	<script type="text/javascript">
