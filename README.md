@@ -20,7 +20,32 @@ Jevercookie inspired by [original Samy Kamkar's Evercookie project][0] .
 ##Examples
 You can see examples of jevercookie using in demo directory
 
+###jevercookie/demo/helloworld
+Simplest example for using evercookies in java projects
+
 ##Getting started
+
+- Add jevercookie dependency to your project
+- Add jevercookie js servlet at your web.xml
+   <servlet>
+        <servlet-name>JecJsServlet</servlet-name>
+        <servlet-class>
+            com.agenievsky.jevercookie.js.servlet.JecJsServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JecJsServlet</servlet-name>
+        <url-pattern>/jevercookie.js</url-pattern>
+    </servlet-mapping>
+- Use evercookies in your pages
+ 	<script type="text/javascript" src="jevercookie.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			JEC.set("xyz", "0123456789");
+			JEC.get("xyz", function f(x) { alert(x); });
+		};
+	</script>
 
 ##Usage
 
