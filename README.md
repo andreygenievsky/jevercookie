@@ -25,8 +25,8 @@ Simplest example for using evercookies in java projects
 
 ##Getting started
 
-- Add jevercookie dependency to your project
-- Add jevercookie js servlet at your web.xml
+1. Add jevercookie dependency to your project
+2. Add jevercookie js servlet at your web.xml
 ```
     <servlet>
         <servlet-name>JecJsServlet</servlet-name>
@@ -40,7 +40,7 @@ Simplest example for using evercookies in java projects
         <url-pattern>/jevercookie.js</url-pattern>
     </servlet-mapping>
 ```
-- Use evercookies in your pages
+3. Use evercookies in your pages
 ```
  	<script type="text/javascript" src="jevercookie.js"></script>
 	<script type="text/javascript">
