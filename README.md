@@ -1,7 +1,7 @@
 #Jevercookie - evercookies for Java
 Jevercookie - java library allowing to use extremely persistent cookies in a browser (evercookies, supercookies) in java projects.
 
-Jevercookie inspired by original evercookie project [0] .
+Jevercookie inspired by [original Samy Kamkar's Evercookie project][0] .
 
 ##Currently available browser storage mechanisms
 Standard HTTP Cookies
@@ -30,18 +30,18 @@ You can see examples of jevercookie using in demo directory
 MIT
 
 ##Related projects
-[0]
-[1]
-[2]
-[3]
-[4]
-[5]
+[https://github.com/samyk/evercookie][0] - original Samy Kamkar's Evercookie project
+[https://github.com/gabrielbauman/evercookie-applet][1] - java applet persistence for Evercookie
+[https://github.com/daddyz/evercookie][2] - evercookies for RoR
+[https://github.com/truongsinh/node-evercookie][3] - evercookies for Node.js
+[https://github.com/kevnk/evercookie-mongodb][4] - Evercookie and MongoDB integrations
+[https://github.com/gdmka/django_evercookie][5] - evercookies for Django
 
 HaveFun!
 
-[0]: https://github.com/samyk/evercookie - original Samy Kamkar's Evercookie project
-[1]: https://github.com/gabrielbauman/evercookie-applet - java applet persistence for Evercookie
-[2]: https://github.com/daddyz/evercookie - evercookies for RoR
-[3]: https://github.com/truongsinh/node-evercookie - evercookies for Node.js
-[4]: https://github.com/kevnk/evercookie-mongodb - Evercookie and MongoDB integrations
-[5]: https://github.com/gdmka/django_evercookie - evercookies for Django
+[0]: https://github.com/samyk/evercookie
+[1]: https://github.com/gabrielbauman/evercookie-applet
+[2]: https://github.com/daddyz/evercookie
+[3]: https://github.com/truongsinh/node-evercookie
+[4]: https://github.com/kevnk/evercookie-mongodb
+[5]: https://github.com/gdmka/django_evercookie
