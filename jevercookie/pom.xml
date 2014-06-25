@@ -16,11 +16,15 @@
   </build>
   <dependencies>
   	<dependency>
-  		<groupId>javax.servlet</groupId>
-  		<artifactId>javax.servlet-api</artifactId>
-  		<scope>provided</scope>
-  		<version>3.0.1</version>
+  	  <groupId>javax.servlet</groupId>
+  	  <artifactId>javax.servlet-api</artifactId>
+  	  <scope>provided</scope>
+  	  <version>3.0.1</version>
   	</dependency>
-  </dependencies>
+    <dependency>
+	  <groupId>junit</groupId>
+	  <artifactId>junit</artifactId>
+	  <version>4.11</version>
+    </dependency>  </dependencies>
   <groupId>jevercookie</groupId>
 </project>

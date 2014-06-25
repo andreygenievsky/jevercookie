@@ -8,18 +8,18 @@ public class AutoadditionProcessor {
 	private static final String SCRIPT_OPEN_TAG = "<script>";
 	private static final String SCRIPT_CLOSE_TAG = "</script>";
 
-	public String process(final String src) {
-		
+	public String process(final String srcStr) {
 		String newStr = null;
-		
-		Scanner scanner = new Scanner(src);
-		try {
-			//TODO change the regexp
-			newStr = scanner.useDelimiter("\\A").next().replaceAll("(?i)" + HEAD_OPEN_TAG, HEAD_OPEN_TAG + SCRIPT_OPEN_TAG + Consts.STANDARD_JS_NAME + SCRIPT_CLOSE_TAG);
-		} catch (Exception e) {
-			newStr = src;
-		} finally {
-			scanner.close();
+		if (srcStr != null) {
+			Scanner scanner = new Scanner(srcStr);
+			try {
+				//TODO change the regexp
+				newStr = scanner.useDelimiter("\\A").next().replaceAll("(?i)" + HEAD_OPEN_TAG, HEAD_OPEN_TAG + SCRIPT_OPEN_TAG + Consts.STANDARD_JS_NAME + SCRIPT_CLOSE_TAG);
+			} catch (Exception e) {
+				newStr = srcStr;
+			} finally {
+				scanner.close();
+			}
 		}
 		return newStr;
 	}
