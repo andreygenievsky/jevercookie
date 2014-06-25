@@ -10,3 +10,6 @@
 /demo/helloworld/.gitignore
 /demo/helloworld/bin
 /demo/helloworld/target
+/demo/helloworld_auto/.classpath
+/demo/helloworld_auto/.project
+/demo/helloworld_auto/.settings
