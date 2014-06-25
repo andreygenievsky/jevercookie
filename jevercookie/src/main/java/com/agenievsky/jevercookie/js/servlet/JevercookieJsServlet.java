@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class JecJsServlet extends HttpServlet {
+public class JevercookieJsServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3350251897008520599L;
 
@@ -23,11 +23,10 @@ public class JecJsServlet extends HttpServlet {
 		try {
 			jsContent = scanner.useDelimiter("\\A").next().getBytes();
 		} catch (Exception e) {
-			throw new ServletException("Error during JECJSServlet initialization", e);
+			throw new ServletException("Error during JevercookieJsServlet initialization", e);
 		} finally {
 			scanner.close();
 		}
-
     	
     }
 
