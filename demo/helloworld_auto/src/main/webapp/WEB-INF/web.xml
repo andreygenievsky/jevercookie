@@ -11,13 +11,21 @@
 
     <servlet>
         <servlet-name>JevercookieJsServlet</servlet-name>
-        <servlet-class>
-            com.agenievsky.jevercookie.js.servlet.JevercookieJsServlet
-        </servlet-class>
+        <servlet-class>com.agenievsky.jevercookie.js.servlet.JevercookieJsServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>JevercookieJsServlet</servlet-name>
         <url-pattern>/jevercookie.js</url-pattern>
     </servlet-mapping>
+
+	<filter>
+		<filter-name>JevercookieAutoadditionFilter</filter-name>
+		<filter-class>com.agenievsky.jevercookie.js.filter.JevercookieAutoadditionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>JevercookieAutoadditionFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+
 </web-app>

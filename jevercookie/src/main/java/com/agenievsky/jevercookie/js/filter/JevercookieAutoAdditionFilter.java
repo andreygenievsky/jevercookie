@@ -33,9 +33,11 @@ public class JevercookieAutoadditionFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
 			throws IOException, ServletException {
 
-		JevercookieAutoadditionResponseWrapper responseWrapper = new JevercookieAutoadditionResponseWrapper((HttpServletResponse) response);
+		OutputStreamResponseWrapper responseWrapper = new OutputStreamResponseWrapper((HttpServletResponse) response);
 		chain.doFilter(request, responseWrapper);
-		response.getWriter().write(autoadditionProcessor.process(responseWrapper.getContent()));
+		byte[] newContent = autoadditionProcessor.process(new String(responseWrapper.getContent())).getBytes();
+		response.setContentLength(newContent.length);
+		response.getOutputStream().write(newContent);
 	}
 
 }

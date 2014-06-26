@@ -5,7 +5,7 @@ public class AutoadditionProcessor {
 	private static final String HTML_OPEN_TAG = "<html>";
 	private static final String HEAD_OPEN_TAG = "<head>";
 	private static final String HEAD_CLOSE_TAG = "</head>";
-	private static final String JEVERCOOKIE_SCRIPT_BLOCK = "<script src=\"" + Consts.STANDARD_JS_NAME + "\"></script>";
+	private static final String JEVERCOOKIE_SCRIPT_BLOCK = "<script type=\"text/javascript\" src=\"" + Consts.STANDARD_JS_NAME + "\"></script>";
 
 	public String process(final String srcStr) {
 		String newStr = null;

@@ -4,8 +4,6 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -29,7 +27,7 @@ public class JevercookieAutoadditionFilterTest {
 	private AutoadditionProcessor aaProc;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
-	private StringWriter responseContentWriter;
+	private ServletByteArrayOutputStream responseContentOutputStream;
 	private FilterChain chain;
 
 	@Before
@@ -46,16 +44,16 @@ public class JevercookieAutoadditionFilterTest {
 		
 		request = mock(HttpServletRequest.class);
 
-		responseContentWriter = new StringWriter();
+		responseContentOutputStream = new ServletByteArrayOutputStream();
 		response = mock(HttpServletResponse.class);
-		when(response.getWriter()).thenReturn(new PrintWriter(responseContentWriter));
+		when(response.getOutputStream()).thenReturn(responseContentOutputStream);
 	
 		chain = mock(FilterChain.class);
 		doAnswer(new Answer<Void>() {
 					@Override
 					public Void answer(InvocationOnMock invocation) throws Throwable {
 						HttpServletResponse response = (HttpServletResponse) invocation.getArguments()[1];
-						response.getWriter().write(originalResponseContent);
+						response.getOutputStream().write(originalResponseContent.getBytes());
 						return null;
 					}}).when(chain).doFilter(any(ServletRequest.class), any(ServletResponse.class));
 	}
@@ -70,7 +68,7 @@ public class JevercookieAutoadditionFilterTest {
 		filter.setAutoadditionProcessor(aaProc);
 		filter.doFilter(request, response, chain);
 		
-		assertEquals(newResponseContent, responseContentWriter.toString());
+		assertEquals(newResponseContent, new String(responseContentOutputStream.getBytes()));
 		
 	}
 	
