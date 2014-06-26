@@ -12,12 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.agenievsky.jevercookie.js.AutoadditionProcessor;
 
-public class JevercookieAutoAdditionFilter implements Filter {
+public class JevercookieAutoadditionFilter implements Filter {
 
-	AutoadditionProcessor autoadditionProcessor;
+	private AutoadditionProcessor autoadditionProcessor;
 	
+	public void setAutoadditionProcessor(AutoadditionProcessor autoadditionProcessor) {
+		this.autoadditionProcessor = autoadditionProcessor;
+	}
+
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig filterConfig) throws ServletException {
 		autoadditionProcessor = new AutoadditionProcessor();
 	}
 
