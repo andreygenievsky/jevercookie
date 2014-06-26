@@ -11,7 +11,7 @@ public class AutoadditionProcessorTest {
 	
 	@Before
 	public void setUp() {
-		aaProcessor = new AutoadditionProcessor();
+		aaProcessor = new AutoadditionProcessor("jevercookie.js");
 	}
 	
 	@Test
@@ -69,5 +69,46 @@ public class AutoadditionProcessorTest {
 		String newStr = aaProcessor.process(srcStr);
 		assertEquals("<HTml><hEaD><script type=\"text/javascript\" src=\"jevercookie.js\"></script></HeAD><BODY><h1>sdwed</H1><P>ok</p></body></HTML>", newStr);
 	}
+
+	@Test
+	public void testJsPathNull() {
+		aaProcessor = new AutoadditionProcessor(null);
+		String srcStr = "<html><head></head><body><h1>sdwed</h1><p>ok</p></body></html>";
+		String newStr = aaProcessor.process(srcStr);
+		assertEquals("<html><head><script type=\"text/javascript\" src=\"\"></script></head><body><h1>sdwed</h1><p>ok</p></body></html>", newStr);
+	}
+
+	@Test
+	public void testJsPathEmpty() {
+		aaProcessor = new AutoadditionProcessor("");
+		String srcStr = "<html><head></head><body><h1>sdwed</h1><p>ok</p></body></html>";
+		String newStr = aaProcessor.process(srcStr);
+		assertEquals("<html><head><script type=\"text/javascript\" src=\"\"></script></head><body><h1>sdwed</h1><p>ok</p></body></html>", newStr);
+	}
+
+	@Test
+	public void testJsPathWith1ForwardSlash() {
+		aaProcessor = new AutoadditionProcessor("/jevercookie.js");
+		String srcStr = "<html><head></head><body><h1>sdwed</h1><p>ok</p></body></html>";
+		String newStr = aaProcessor.process(srcStr);
+		assertEquals("<html><head><script type=\"text/javascript\" src=\"jevercookie.js\"></script></head><body><h1>sdwed</h1><p>ok</p></body></html>", newStr);
+	}
+
+	@Test
+	public void testJsPathWithManyForwardSlashes() {
+		aaProcessor = new AutoadditionProcessor("/////jevercookie.js");
+		String srcStr = "<html><head></head><body><h1>sdwed</h1><p>ok</p></body></html>";
+		String newStr = aaProcessor.process(srcStr);
+		assertEquals("<html><head><script type=\"text/javascript\" src=\"jevercookie.js\"></script></head><body><h1>sdwed</h1><p>ok</p></body></html>", newStr);
+	}
+
+	@Test
+	public void testJsPathAllSlashes() {
+		aaProcessor = new AutoadditionProcessor("/////");
+		String srcStr = "<html><head></head><body><h1>sdwed</h1><p>ok</p></body></html>";
+		String newStr = aaProcessor.process(srcStr);
+		assertEquals("<html><head><script type=\"text/javascript\" src=\"\"></script></head><body><h1>sdwed</h1><p>ok</p></body></html>", newStr);
+	}
+
 
 }

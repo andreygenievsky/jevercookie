@@ -22,7 +22,11 @@ public class JevercookieAutoadditionFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		autoadditionProcessor = new AutoadditionProcessor();
+		String jevercookieJsPath = filterConfig.getInitParameter("JevercookieJsPath");
+		if (jevercookieJsPath == null) {
+			throw new ServletException("Cannot find \"JevercookieJsPath\" parameter");
+		}
+		autoadditionProcessor = new AutoadditionProcessor(jevercookieJsPath);
 	}
 
 	@Override
