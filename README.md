@@ -57,7 +57,7 @@ Example of using jevercookies with implicit adding jevercookie javascript link
 ##Usage
 
 ##Release notes
-[https://github.com/andreygenievsky/jevercookie/wiki/Release-notes][Here]
+[Here](https://github.com/andreygenievsky/jevercookie/wiki/Release-notes)
 
 ##License
 MIT
