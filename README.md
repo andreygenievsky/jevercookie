@@ -23,6 +23,9 @@ You can see examples of jevercookie using in demo directory
 ###jevercookie/demo/helloworld
 Simplest example for using evercookies in java projects
 
+###jevercookie/demo/helloworld_auto
+Example of using jevercookies with implicit adding jevercookie javascript link
+
 ##Getting started
 
 - 1. Add jevercookie dependency to your project
@@ -52,6 +55,9 @@ Simplest example for using evercookies in java projects
 ```
 
 ##Usage
+
+##Release notes
+[https://github.com/andreygenievsky/jevercookie/wiki/Release-notes](Here)
 
 ##License
 MIT
