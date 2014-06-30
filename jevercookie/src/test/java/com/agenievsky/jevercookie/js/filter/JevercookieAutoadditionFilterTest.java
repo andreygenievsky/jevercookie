@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import com.agenievsky.jevercookie.js.AutoadditionProcessor;
+import com.agenievsky.jevercookie.js.html.AutoadditionProcessor;
 
 public class JevercookieAutoadditionFilterTest {
 

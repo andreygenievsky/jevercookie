@@ -1,9 +1,11 @@
-package com.agenievsky.jevercookie.js;
+package com.agenievsky.jevercookie.js.html;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.agenievsky.jevercookie.js.html.AutoadditionProcessor;
 
 public class AutoadditionProcessorTest {
 

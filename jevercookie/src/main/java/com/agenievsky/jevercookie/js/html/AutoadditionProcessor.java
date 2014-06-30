@@ -1,6 +1,8 @@
-package com.agenievsky.jevercookie.js;
+package com.agenievsky.jevercookie.js.html;
 
-public class AutoadditionProcessor {
+import com.agenievsky.jevercookie.stringprocessing.StringProcessor;
+
+public class AutoadditionProcessor implements StringProcessor {
 
 	private static final String HTML_OPEN_TAG = "<html>";
 	private static final String HEAD_OPEN_TAG = "<head>";

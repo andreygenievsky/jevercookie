@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-import com.agenievsky.jevercookie.js.AutoadditionProcessor;
+import com.agenievsky.jevercookie.js.html.AutoadditionProcessor;
 
 public class JevercookieAutoadditionFilter implements Filter {
 
