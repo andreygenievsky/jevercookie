@@ -60,7 +60,7 @@ Example of using jevercookies with implicit adding jevercookie javascript link
 [Here](https://github.com/andreygenievsky/jevercookie/wiki/Release-notes)
 
 ##License
-MIT
+[MIT](https://github.com/andreygenievsky/jevercookie/blob/master/LICENSE)
 
 ##Related projects
 - [https://github.com/samyk/evercookie][0] - original Samy Kamkar's Evercookie project
