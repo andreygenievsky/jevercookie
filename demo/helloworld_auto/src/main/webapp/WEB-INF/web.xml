@@ -22,7 +22,7 @@
 		<filter-name>JevercookieAutoadditionFilter</filter-name>
 		<filter-class>com.agenievsky.jevercookie.js.filter.JevercookieAutoadditionFilter</filter-class>
 		<init-param>
-			<param-name>JevercookieJsPath</param-name>
+			<param-name>JevercookieJsUrl</param-name>
 			<param-value>/jevercookie_helloworld_auto.js</param-value>
 		</init-param>
 	</filter>

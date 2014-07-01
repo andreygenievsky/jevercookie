@@ -14,6 +14,8 @@ import com.agenievsky.jevercookie.js.html.AutoadditionProcessor;
 
 public class JevercookieAutoadditionFilter implements Filter {
 
+	public static final String JEVERCOOKIE_JS_URL = "JevercookieJsUrl";
+	
 	private AutoadditionProcessor autoadditionProcessor;
 	
 	public void setAutoadditionProcessor(AutoadditionProcessor autoadditionProcessor) {
@@ -22,9 +24,9 @@ public class JevercookieAutoadditionFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		String jevercookieJsPath = filterConfig.getInitParameter("JevercookieJsPath");
+		String jevercookieJsPath = filterConfig.getInitParameter(JEVERCOOKIE_JS_URL);
 		if (jevercookieJsPath == null) {
-			throw new ServletException("Cannot find \"JevercookieJsPath\" parameter");
+			throw new ServletException("Cannot find \"" + JEVERCOOKIE_JS_URL + "\" parameter");
 		}
 		autoadditionProcessor = new AutoadditionProcessor(jevercookieJsPath);
 	}
