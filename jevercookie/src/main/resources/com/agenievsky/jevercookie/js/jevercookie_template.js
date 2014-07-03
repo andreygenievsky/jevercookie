@@ -1,22 +1,11 @@
 var JEC = new function() {
 
-	this.MAX_RECURSION_DEPTH = 16;
-	this.TIMEOUT = 100;
-
 	this.DB_NAME = "hc6RTD9j";
 	this.TABLE_NAME = "VO59Eh78";
 	this.NAME_FIELD = "name";
 	this.VALUE_FIELD = "value";
 	
 	this.USERDATA_ELEMENT = "nu5DRh09";
-
-	this.COOKIE_STORAGE = "cookieStorage";
-	this.GLOBAL_STORAGE = "globalStorage";
-	this.LOCAL_STORAGE = "localStorage";
-	this.SESSION_STORAGE = "sessionStorage";
-	this.USERDATA_STORAGE = "userdataStorage";
-	this.WINDOW_STORAGE = "windowStorage";
-	this.DATABASE_STORAGE = "databaseStorage";
 
 	this.savedValues = null;
 
@@ -31,15 +20,13 @@ var JEC = new function() {
 	};
 
 	this.get = function(name, callback) {
-
 		this.savedValues = new Array();
-		
-		this.savedValues[this.COOKIE_STORAGE] = this._loadECFromCookieStorage(name);
-		this.savedValues[this.GLOBAL_STORAGE] = this._loadECFromGlobalStorage(name);
-		this.savedValues[this.LOCAL_STORAGE] = this._loadECFromLocalStorage(name);
-		this.savedValues[this.SESSION_STORAGE] = this._loadECFromSessionStorage(name);
-		this.savedValues[this.USERDATA_STORAGE] = this._loadECFromUserdataStorage(name);
-		this.savedValues[this.WINDOW_STORAGE] = this._loadECFromWindowStorage(name);
+		this.savedValues["${jevercookie.cookieStorage}"] = this._loadECFromCookieStorage(name);
+		this.savedValues["${jevercookie.globalStorage}"] = this._loadECFromGlobalStorage(name);
+		this.savedValues["${jevercookie.localStorage}"] = this._loadECFromLocalStorage(name);
+		this.savedValues["${jevercookie.sessionStorage}"] = this._loadECFromSessionStorage(name);
+		this.savedValues["${jevercookie.userdataStorage}"] = this._loadECFromUserdataStorage(name);
+		this.savedValues["${jevercookie.windowStorage}"] = this._loadECFromWindowStorage(name);
 
 		this._loadECFromDatabaseStorage(name);
 
@@ -52,10 +39,10 @@ var JEC = new function() {
 		var isAllValsLoaded = true;
 		isAllValsLoaded &= this._isSavedECToDatabaseStorage();
 		if (!isAllValsLoaded) {
-			if (recursionDepth < this.MAX_RECURSION_DEPTH) {
+			if (recursionDepth < ${jevercookie.maxRecursionDepth}) {
 				setTimeout(function() {
 					JEC._waitForLoadingValues(callback, recursionDepth + 1);
-				}, this.TIMEOUT);
+				}, ${jevercookie.timeout});
 				return;
 			};
 		}
@@ -100,7 +87,7 @@ var JEC = new function() {
 	};
 
 	this._saveBestECToCookieStorage = function(name, bestValue) {
-		if (bestValue != this.savedValues[this.COOKIE_STORAGE]) {
+		if (bestValue != this.savedValues["${jevercookie.cookieStorage}"]) {
 			this._saveECToCookieStorage(name, bestValue);
 		} 
 	};
@@ -116,7 +103,7 @@ var JEC = new function() {
 	};
 
 	this._saveBestECToGlobalStorage = function(name, bestValue) {
-		if (bestValue != this.savedValues[this.GLOBAL_STORAGE]) {
+		if (bestValue != this.savedValues["${jevercookie.globalStorage}"]) {
 			this._saveECToGlobalStorage(name, bestValue);
 		} 
 	};
@@ -136,7 +123,7 @@ var JEC = new function() {
 	};
 
 	this._saveBestECToLocalStorage = function(name, bestValue) {
-		if (bestValue != this.savedValues[this.LOCAL_STORAGE]) {
+		if (bestValue != this.savedValues["${jevercookie.localStorage}"]) {
 			this._saveECToLocalStorage(name, bestValue);
 		} 
 	};
@@ -155,8 +142,9 @@ var JEC = new function() {
 		} catch (e) {}
 	};
 
+
 	this._saveBestECToSessionStorage = function(name, bestValue) {
-		if (bestValue != this.savedValues[this.SESSION_STORAGE]) {
+		if (bestValue != this.savedValues["${jevercookie.sessionStorage}"]) {
 			this._saveECToSessionStorage(name, bestValue);
 		} 
 	};
@@ -185,13 +173,13 @@ var JEC = new function() {
 	};
 
 	this._saveBestECToDatabaseStorage = function(name, bestValue) {
-		if (bestValue != this.savedValues[this.DATABASE_STORAGE]) {
+		if (bestValue != this.savedValues["${jevercookie.databaseStorage}"]) {
 			this._saveECToDatabaseStorage(name, bestValue);
 		} 
 	};
 
 	this._isSavedECToDatabaseStorage = function() {
-		if (this.savedValues[this.DATABASE_STORAGE] == null) {
+		if (this.savedValues["${jevercookie.databaseStorage}"] == null) {
 			return false;
 		} else {
 			return true;
@@ -211,14 +199,14 @@ var JEC = new function() {
 			});
 		} catch (e) {}
 	};
-	
+
 	this._saveECToUserdataStorage = function(name, value) {
 		var element = this._createOrGetElement("div", this.USERDATA_ELEMENT);
         element.setAttribute(name, value);
 	};
 
 	this._saveBestECToUserdataStorage = function(name, bestValue) {
-		if (bestValue != this.savedValues[this.USERDATA_STORAGE]) {
+		if (bestValue != this.savedValues["${jevercookie.userdataStorage}"]) {
 			this._saveECToUserdataStorage(name, bestValue);
 		} 
 	};
@@ -236,7 +224,7 @@ var JEC = new function() {
 	};
 
 	this._saveBestECToWindowStorage = function(name, bestValue) {
-		if (bestValue != this.savedValues[this.WINDOW_STORAGE]) {
+		if (bestValue != this.savedValues["${jevercookie.windowStorage}"]) {
 			this._saveECToWindowStorage(name, bestValue);
 		} 
 	};
