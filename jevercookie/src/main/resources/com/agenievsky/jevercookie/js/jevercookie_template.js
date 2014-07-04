@@ -1,12 +1,6 @@
 var JEC = new function() {
 
-	this.DB_NAME = "hc6RTD9j";
-	this.TABLE_NAME = "VO59Eh78";
-	this.NAME_FIELD = "name";
-	this.VALUE_FIELD = "value";
 	
-	this.USERDATA_ELEMENT = "nu5DRh09";
-
 	this.savedValues = null;
 
 	this.set = function (name, value) {
@@ -81,9 +75,11 @@ var JEC = new function() {
 		return bestECValue;
 	};
 	
-	this._saveECToCookieStorage = function(name, value) {
-		document.cookie = name + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC";
-		document.cookie = name + "=" + value + ";";
+
+
+    this._saveECToCookieStorage = function(name, value) {
+		document.cookie = name + "=; expires=Mon, 20 Sep 2010 00:00:00 UTC; domain=${jevercookie.cookie.domain}; path=${jevercookie.cookie.path}";
+		document.cookie = name + "=" + value + "; expires=${jevercookie.cookie.expires}; domain=${jevercookie.cookie.domain}; path=${jevercookie.cookie.path}";
 	};
 
 	this._saveBestECToCookieStorage = function(name, bestValue) {
@@ -156,18 +152,18 @@ var JEC = new function() {
 			return null;
 		}
 	};
-
+	
 	this._saveECToDatabaseStorage = function(name, value) {
 		try {
-			var db = window.openDatabase(this.DB_NAME, "", "", 1024 * 1024);
+			var db = window.openDatabase("${jevercookie.database.name}", "", "", 1024 * 1024);
 			db.transaction(function(tx) {
-				tx.executeSql("CREATE TABLE IF NOT EXISTS " + this.TABLE_NAME + "("
+				tx.executeSql("CREATE TABLE IF NOT EXISTS ${jevercookie.database.table} ("
 						+ "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
-						+ this.NAME_FIELD + " TEXT NOT NULL, " + this.VALUE_FIELD
-						+ " TEXT NOT NULL, " + "UNIQUE (" + this.NAME_FIELD + ")" + ")",
+						+ "${jevercookie.database.nameField} TEXT NOT NULL, ${jevercookie.database.valueField}"
+						+ " TEXT NOT NULL, " + "UNIQUE (${jevercookie.database.nameField})" + ")",
 						[], function(tx, rs) {}, function(tx, err) {});
-				tx.executeSql("INSERT OR REPLACE " + "INTO " + this.TABLE_NAME + "("
-						+ this.NAME_FIELD + ", " + this.VALUE_FIELD + ") " + "VALUES(?, ?)", [name, value], function(tx, rs) {}, function(tx, err) {});
+				tx.executeSql("INSERT OR REPLACE INTO ${jevercookie.database.table} ("
+						+ "${jevercookie.database.nameField}, ${jevercookie.database.valueField}) " + "VALUES(?, ?)", [name, value], function(tx, rs) {}, function(tx, err) {});
 			});
 		} catch (e) {}
 	};
@@ -188,12 +184,12 @@ var JEC = new function() {
 
 	this._loadECFromDatabaseStorage = function(name) {
 		try {
-			var db = window.openDatabase(this.DB_NAME, "", "", 1024 * 1024);
+			var db = window.openDatabase("${jevercookie.database.name}", "", "", 1024 * 1024);
 			db.transaction(function(tx) {
-				tx.executeSql("SELECT " + this.VALUE_FIELD + " " + "FROM " + this.TABLE_NAME
-						+ " " + "WHERE " + this.NAME_FIELD + "=?", [name], function(tx,	result1) {
+				tx.executeSql("SELECT ${jevercookie.database.valueField} FROM ${jevercookie.database.table}"
+						+ " WHERE ${jevercookie.database.nameField}=?", [name], function(tx,	result1) {
 					if (result1.rows.length >= 1) {
-						this.savedValues[this.DATABASE_STORAGE] = result1.rows.item(0).value;
+						this.savedValues["${jevercookie.databaseStorage}"] = result1.rows.item(0).value;
 					}
 				}, function(tx, err) {});
 			});
@@ -201,7 +197,7 @@ var JEC = new function() {
 	};
 
 	this._saveECToUserdataStorage = function(name, value) {
-		var element = this._createOrGetElement("div", this.USERDATA_ELEMENT);
+		var element = this._createOrGetElement("div", "${jevercookie.userdata.element}");
         element.setAttribute(name, value);
 	};
 
@@ -212,7 +208,7 @@ var JEC = new function() {
 	};
 
 	this._loadECFromUserdataStorage = function(name) {
-		var element = this._getElement(this.USERDATA_ELEMENT);
+		var element = this._getElement("${jevercookie.userdata.element}");
 		if (element)
 			return element.getAttribute(name);
 		else

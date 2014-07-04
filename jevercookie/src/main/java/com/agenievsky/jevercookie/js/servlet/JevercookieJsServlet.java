@@ -1,8 +1,10 @@
 package com.agenievsky.jevercookie.js.servlet;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -26,17 +28,17 @@ public class JevercookieJsServlet extends HttpServlet {
 	private ExpressionReplaceProcessor expressionReplaceProcessor;
 	
     public void init(ServletConfig config) throws ServletException {
-    	
-		String jsPropertiesPath = config.getInitParameter(JS_PROPERTIES_PATH_PARAM);
-		if (jsPropertiesPath == null) {
-			jsPropertiesPath = DEFAULT_JS_PROPERTIES_PATH;
-		}
 
+		String jsPropertiesPath = config.getInitParameter(JS_PROPERTIES_PATH_PARAM);
 		Properties jsProperties = null;
-    	try {
-			jsProperties = loadJsProperties(jsPropertiesPath);
+		try {
+			jsProperties = loadProperties(DEFAULT_JS_PROPERTIES_PATH);
+			if (jsPropertiesPath != null) {
+				Properties customizedProperties = loadProperties(jsPropertiesPath);
+				jsProperties.putAll(customizedProperties);
+			}
 		} catch (IOException e) {
-			throw new ServletException("Cannot load properties : " + jsPropertiesPath, e);
+			throw new ServletException("Cannot load default properties", e);
 		}
     	
     	expressionReplaceProcessor = new ExpressionReplaceProcessor();
@@ -44,10 +46,15 @@ public class JevercookieJsServlet extends HttpServlet {
     	jsContent = processJsContent(loadJsContent(JS_TEMPLATE_PATH));
     }
 
-    private Properties loadJsProperties(final String jsPropertiesPath) throws IOException {
-    	Properties jsProperties = new Properties();
-    	jsProperties.load(getClass().getResourceAsStream(jsPropertiesPath));
-    	return jsProperties;
+    private Properties loadProperties(final String jsPropertiesPath) throws IOException {
+    	Properties properties = new Properties();
+    	InputStream in = getClass().getResourceAsStream(jsPropertiesPath);
+    	try {
+    		properties.load(in);
+    		return properties;
+    	} finally {
+    		in.close();
+    	}
     }
     
     private String loadJsContent(final String jsTemplatePath) {
